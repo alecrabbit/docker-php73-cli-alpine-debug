@@ -1,1 +1,1 @@
-php-alpine
+php-alpine-xdebug
