@@ -26,7 +26,13 @@ RUN set -xe \
         $PHPIZE_DEPS \
     && pecl install xdebug-${PHP_XDEBUG_VERSION} \
     && docker-php-ext-enable xdebug \
-    && apk del .build-deps 
+    && apk del .build-deps \
+    && composer --no-interaction global require 'squizlabs/php_codesniffer' \
+    && composer --no-interaction global require 'phpmetrics/phpmetrics' \
+    && composer --no-interaction global require 'phpstan/phpstan' \
+    && composer --no-interaction global require 'phpunit/phpunit' \
+    && composer --no-interaction global require 'vimeo/psalm' \
+    && composer clear-cache
 
 WORKDIR /var/www
 ENTRYPOINT []
