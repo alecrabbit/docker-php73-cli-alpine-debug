@@ -1,4 +1,4 @@
-FROM dralec/php-alpine
+FROM dralec/php-cli-alpine
 LABEL Description="Application container"
 
 ENV PHP_XDEBUG_VERSION 2.6.1

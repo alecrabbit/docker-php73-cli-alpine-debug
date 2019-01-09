@@ -1,5 +1,29 @@
 #!/usr/bin/env bash
+FORCE=0
+echo "$@" # for debug
+for arg
+do
+    case "$arg" in
+        --force)
+            FORCE=1
+            ;;
+    esac
+done
 
-docker build -t dralec/php-alpine-xdebug .
+IMAGE="dralec/${PWD##*/}"
+echo "Building image: ${IMAGE}"
+if [[ ${FORCE} == 0 ]]
+then
+  docker build -t "${IMAGE}" .
+else
+  docker build --no-cache -t "${IMAGE}" .
+fi
 
-docker push dralec/php-alpine-xdebug
+if [ $? -eq 0 ]
+then
+  echo "Pushing"
+  docker push "${IMAGE}"
+else
+  echo "Could not build an image" >&2
+  exit 1
+fi
