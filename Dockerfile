@@ -1,7 +1,7 @@
-FROM dralec/php-cli-alpine
+FROM dralec/php73-cli-alpine
 LABEL Description="Application container"
 
-ENV PHP_XDEBUG_VERSION 2.6.1
+ENV PHP_XDEBUG_VERSION 2.7.0beta1
 
 # persistent / runtime deps
 ENV PHPIZE_DEPS \
