@@ -27,3 +27,5 @@ else
   echo "Could not build an image" >&2
   exit 1
 fi
+
+notify-send "🐳 Docker" "'${IMAGE}' built successfully."
