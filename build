@@ -25,6 +25,7 @@ then
   docker push "${IMAGE}"
 else
   echo "Could not build an image" >&2
+  notify-send "🐳 Docker" "'${IMAGE}' build ERROR" -u critical
   exit 1
 fi
 
