@@ -36,6 +36,7 @@ RUN set -xe \
     && composer --no-interaction global --prefer-stable require 'sensiolabs/security-checker' \
     && composer --no-interaction global --prefer-stable require 'kylekatarnls/multi-tester' \
     && composer --no-interaction global --prefer-stable require 'innmind/dependency-graph' \
+    && composer --no-interaction global --prefer-stable require 'mamuz/php-dependency-analysis' \
     && composer --no-interaction global --prefer-stable require 'jakub-onderka/php-var-dump-check' \
     && composer --no-interaction global --prefer-stable require 'jakub-onderka/php-console-highlighter' \
     && composer clear-cache
