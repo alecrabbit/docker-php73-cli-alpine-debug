@@ -43,6 +43,7 @@ RUN set -xe \
 
 
 COPY ./patch/multi-tester /tmp/vendor/bin/multi-tester
+COPY ./patch/Summary.php /tmp/vendor/kylekatarnls/multi-tester/src/MultiTester/Summary.php
 
 WORKDIR /var/www
 ENTRYPOINT []
