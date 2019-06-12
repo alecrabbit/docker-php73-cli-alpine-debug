@@ -41,6 +41,9 @@ RUN set -xe \
     && composer --no-interaction global --prefer-stable require 'jakub-onderka/php-console-highlighter' \
     && composer clear-cache
 
+
+COPY ./patch/multi-tester /tmp/vendor/bin/multi-tester
+
 WORKDIR /var/www
 ENTRYPOINT []
 CMD []
