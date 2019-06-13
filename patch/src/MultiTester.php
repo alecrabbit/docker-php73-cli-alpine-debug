@@ -2,8 +2,10 @@
 
 namespace MultiTester;
 
+use MultiTester\Exceptions\ConfigFileNotFoundException;
 use MultiTester\Exceptions\MultiTesterException;
 use MultiTester\Exceptions\TestFailedException;
+use MultiTester\Exceptions\ZeroProjectsTestedException;
 use MultiTester\Traits\MultiTesterFile;
 use MultiTester\Traits\ProcStreams;
 use MultiTester\Traits\StorageDirectory;
@@ -109,6 +111,7 @@ class MultiTester
     /**
      * @param array $arguments
      *
+     * @return bool
      * @throws MultiTesterException
      */
     public function run(array $arguments)
@@ -267,7 +270,6 @@ class MultiTester
     protected function error($message)
     {
         (new Directory($this->getWorkingDirectory()))->remove();
-
         throw $message instanceof MultiTesterException ?
             new MultiTesterException($message->getMessage(), 0, $message) :
             new MultiTesterException($message);

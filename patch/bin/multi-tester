@@ -35,7 +35,7 @@ function getLoader()
     return false;
 }
 
-function showError(\Exception $e, $isVerbose)
+function showError(\Exception $e)
 {
     $errorString = 'ERROR:' . $e->getMessage();
 
@@ -45,14 +45,6 @@ function showError(\Exception $e, $isVerbose)
 
     echo "\n" . $errorString . "\n\n";
 
-    if ($isVerbose) {
-        echo "Trace:\n";
-        echo $e->getTraceAsString() . "\n\n";
-    } else {
-        echo 'Use --verbose option to get more details.' . "\n\n";
-    }
-
-    exit(1);
 }
 
 
@@ -71,8 +63,26 @@ if (!getLoader()) {
 try {
     $multiTester = new MultiTester();
     $code = $multiTester->run($argv) ? 0 : 1;
-} catch (MultiTesterException $e) {
-    $isVerbose = isset($multiTester) && $multiTester->isVerbose();
-    showError($e, $isVerbose);
+} catch (ZeroProjectsTestedException $e) {
+    showError($e);
+
+    if (isset($multiTester) && $multiTester->isVerbose()) {
+
+        echo ' Check you have projects in your config file: ' . $multiTester->getMultiTesterFile(). "\n\n";
+
+        echo "Trace:\n";
+        echo $e->getTraceAsString() . "\n\n";
+    } else {
+        echo ' Use --verbose option to get more details.' . "\n\n";
+    }
+    exit(1);
+}
+catch (MultiTesterException $e) {
+    showError($e);
+    if (isset($multiTester) && $multiTester->isVerbose()) {
+        echo "Trace:\n";
+        echo $e->getTraceAsString() . "\n\n";
+    }
+    exit(1);
 }
 exit($code);
