@@ -29,27 +29,28 @@ class Summary
     {
         // @codeCoverageIgnoreStart
         return
-            (
             DIRECTORY_SEPARATOR === '\\'
                 ? false !== getenv('ANSICON') ||
                 'ON' === getenv('ConEmuANSI') ||
                 false !== getenv('BABUN_HOME')
                 : (false !== getenv('BABUN_HOME')) ||
                 (function_exists('posix_isatty') &&
-                    @posix_isatty(STDOUT))
-            );
+                    @posix_isatty(STDOUT));
         // @codeCoverageIgnoreEnd
     }
 
     /**
-     * @return string
      * @throws ZeroProjectsTestedException
+     *
+     * @return string
      */
     public function get()
     {
         $count = count($this->state);
         if (0 === $count) {
+            // @codeCoverageIgnoreStart
             throw new ZeroProjectsTestedException('No projects tested.');
+            // @codeCoverageIgnoreEnd
         }
         $pad = max(array_map('strlen', array_keys($this->state)));
         $successString = '%s    Success';

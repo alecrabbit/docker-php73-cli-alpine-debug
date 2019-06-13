@@ -2,8 +2,8 @@
 
 namespace MultiTester;
 
-use MultiTester\Exceptions\MultiTesterException;
 use MultiTester\Exceptions\ConfigFileNotFoundException;
+use MultiTester\Exceptions\MultiTesterException;
 
 class Config
 {
@@ -61,7 +61,7 @@ class Config
      * Config constructor.
      *
      * @param MultiTester $multiTester
-     * @param array $arguments
+     * @param array       $arguments
      *
      * @throws ConfigFileNotFoundException
      * @throws MultiTesterException
