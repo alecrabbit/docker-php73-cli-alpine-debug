@@ -39,7 +39,8 @@ RUN set -xe \
     && composer --no-interaction global --prefer-stable require 'mamuz/php-dependency-analysis' \
     && composer --no-interaction global --prefer-stable require 'jakub-onderka/php-var-dump-check' \
     && composer --no-interaction global --prefer-stable require 'jakub-onderka/php-console-highlighter' \
-    && composer clear-cache
+    && composer clear-cache \
+    && rm -rf /tmp/cache
 
 
 COPY ./patch/bin/multi-tester /tmp/vendor/bin/multi-tester
