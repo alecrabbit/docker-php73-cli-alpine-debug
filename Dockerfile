@@ -32,15 +32,19 @@ RUN set -xe \
     && composer --no-interaction global --prefer-stable require 'phpmetrics/phpmetrics' \
     && composer --no-interaction global --prefer-stable require 'phpstan/phpstan' \
     && composer --no-interaction global --prefer-stable require 'phpunit/phpunit' \
+    && composer --no-interaction global --prefer-stable require 'edgedesign/phpqa' \
     && composer --no-interaction global --prefer-stable require 'vimeo/psalm' \
     && composer --no-interaction global --prefer-stable require 'sensiolabs/security-checker' \
     && composer --no-interaction global --prefer-stable require 'kylekatarnls/multi-tester' \
     && composer --no-interaction global --prefer-stable require 'innmind/dependency-graph' \
     && composer --no-interaction global --prefer-stable require 'mamuz/php-dependency-analysis' \
+    && composer --no-interaction global --prefer-stable require 'friendsofphp/php-cs-fixer' \
+    && composer --no-interaction global --prefer-stable require 'jakub-onderka/php-parallel-lint' \
     && composer --no-interaction global --prefer-stable require 'jakub-onderka/php-var-dump-check' \
     && composer --no-interaction global --prefer-stable require 'jakub-onderka/php-console-highlighter' \
     && composer clear-cache \
     && rm -rf /tmp/cache
+
 
 
 COPY ./patch/bin/multi-tester /tmp/vendor/bin/multi-tester
