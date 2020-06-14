@@ -1,1 +1,1 @@
-php-alpine-xdebug
+php73-cli-alpine-debug

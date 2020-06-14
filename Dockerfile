@@ -15,9 +15,7 @@ ARG PHP_BUILD_DEPS="\
     make \
     gcc"
 
-ARG COMPOSER_HOME=/tmp/composer
-
-RUN set -xe \
+RUN set -eux \
     && \
     apk add --no-cache --virtual .php-build-deps ${PHP_BUILD_DEPS} \
     && pecl install xdebug-${XDEBUG_VERSION} \
@@ -35,6 +33,7 @@ RUN set -xe \
     # && composer --no-interaction global --prefer-stable require 'mamuz/php-dependency-analysis' \
     && composer --no-interaction global --prefer-stable require 'friendsofphp/php-cs-fixer' \
     && composer clear-cache \
+    # Note: COMPOSER_HOME  must be set in source image, see FROM directive
     && rm -rf ${COMPOSER_HOME}/.htaccess ${COMPOSER_HOME}/cache \
     && php -v \
     && php -m
